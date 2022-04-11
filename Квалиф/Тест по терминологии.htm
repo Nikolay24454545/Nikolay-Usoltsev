@@ -1,0 +1,342 @@
+
+<html>
+<head>
+<meta content="text/html; charset=windows-1251" http-equiv="content-type">
+<Script Language="JavaScript">  
+<!-- Начало сценария 
+var rez=[2,4,2,4,4,2];
+var vinq=[3,3,3,3,3,3];
+var kfQ=[1,1,1,1,1,1];
+var kfS=[];
+var kfFalse=[2,2,2,2,2,2];
+var svob=[ [] ];
+// PerVop
+var mix=true;
+var svob=5837;
+</script>  
+
+<style>
+body {
+    font-family: verdana,arial,helvetica;
+    color: #008000;
+	background-color: #008000;
+	margin: 30px auto;
+    width: 700px;
+}
+.onetest {
+    position: relative;
+    box-shadow: 0 0 6px #00C036;
+    border-radius: 6px 6px 6px 6px;  
+    padding: 15px 20px;
+    margin-bottom: 15px;
+	background-color: #FFFFFF;
+	
+}
+.onetest img {
+max-width:600px;
+}
+.onetest a {
+color: #008000;
+text-decoration:none;
+}
+.testname {
+    font: 22px 'Arial';  
+}
+.testdescription {
+    font: 12px/16px 'Arial';
+	margin: 10px 0 0 0px;
+}
+.testline {
+    background-color: #00B000;
+    height: 1px;
+    margin: 15px 0px 0;
+}
+.testclass {
+    font: italic 11px 'Arial';
+	margin: 2px 0 0 0px;
+}
+.otv {
+    left: 150px;
+    position: absolute;
+    top: 15px;
+}
+#winotv {
+    background-color: #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 0 6px #00C036;
+    display: none;
+    margin: 0 auto;
+    padding: 15px 50px 15px 50px;
+    width: 435px;
+	text-align: center;
+}
+#rezbutton {
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 0 6px #00C036;
+    height: 65px;
+    margin: 0 auto;
+    width: 300px;
+    display: block;
+}
+#rezbutton input {
+    background-color: #FFFFFF;
+    border: medium none;
+    border-radius: 6px 6px 6px 6px;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    font: 22px 'Arial';
+    color: #008000;
+    text-align: center;
+}
+.svob {
+	font-style: italic;
+	font-weight: bold;
+	font-size: 12px;
+}
+.aspan:hover {
+	color: #00D000;
+	text-shadow: 0 0 6px;
+	cursor: pointer;
+}
+#teacher {
+	position: fixed;
+	box-shadow: 0 0 6px #00C036;
+	border-radius: 6px 6px 6px 6px;
+	padding: 15px 20px;
+	background-color: #FFFFFF;
+	width: 1000px;
+	margin: 100px -150px;
+	z-index: 1;
+	top: 0px;
+	height: 700px;
+}
+.otv .imgtrue {
+	background: url("data:image/png;") no-repeat;
+	height: 53px;
+    width: 200px;
+}
+.otv .imgfalse {
+	background: url("data:image/png;") no-repeat;
+	height: 53px;
+    width: 253px;
+}
+.otv .img_nearly_true {
+    background: url("data:image/png;
+    ") no-repeat;
+    height: 53px;
+    width: 321px;
+}
+</style>
+
+
+<Script Language="JavaScript">
+function isNumeric(n) {return !isNaN(parseFloat(n)) && isFinite(n);}
+function getchecked(a,b){
+	var tt = document.getElementsByName("Q"+a);
+	if(tt[b].checked) tt[b].checked = false;
+	else tt[b].checked = true;}
+function code(strIn){	
+	var strOut=[],ii,jj;
+	for(ii=0; ii<strIn.length; ii++) {
+		var strTmp=[];
+		for(jj=0; jj<strIn[ii].length; jj++){strTmp[jj] = strIn[ii].charCodeAt(jj)-1;if (strTmp[jj]==1039) {strTmp[jj]=1103};}
+		strOut[ii]='';
+		for(jj=0; jj<strTmp.length; jj++){strOut[ii] += String.fromCharCode(strTmp[jj]);}}
+	return strOut;}
+function check_me(){
+	var otv=[],i,j,tmp,str1,names,vah=false,totaltrueQ=[],totalS=[],total=0,totalQAll=0,totalSAll=0,answerQ=[],answerTrue=0;
+	if(document.getElementById("torf1") != null){
+		for(i=0;i<vinq.length;i++){
+			otv[i]=[];
+			for(j=0;j<vinq[i];j++){
+				names=document.getElementsByName("Q"+(i+1));
+				if(names[j].checked)otv[i][j]=1;
+				else otv[i][j]=0;}
+			if(parseInt(otv[i].join(''),2)==0)vah=true;}}
+	if(document.getElementById("svobod1") != null){
+		for(i=0;i<svob.length;i++){
+			names=document.getElementsByName("S"+(i+1));
+			if(names[0].value=='')vah=true;}}
+	if(vah) alert("Вы выполнили не все задания. Проверьте себя.");
+	else{
+		if(document.getElementById("torf1") != null){
+			for(i=0;i<rez.length;i++){
+				str1 = rez[i].toString(2);
+				while(str1.length < vinq[i]) str1="0"+str1;
+				totaltrueQ[i]=0;
+				for(j=0;j<str1.length;j++){totaltrueQ[i] += parseInt(str1[j]);}
+				totalQAll += kfQ[i];
+				if(parseInt(otv[i].join(''),2)==rez[i])	{
+					document.getElementById("torf"+(i+1)).innerHTML='<div class="imgtrue"></div>';
+					total += kfQ[i];
+					answerTrue += kfQ[i];}
+				else {
+					for(j=0;j<str1.length;j++){
+						answerQ[j] = otv[i][j]/parseInt(str1[j]);
+						if(isNaN(answerQ[j])) answerQ[j]=2;}
+					if(!isNumeric(answerQ.join(''))) {
+						document.getElementById("torf"+(i+1)).innerHTML='<div class="imgfalse"></div>';
+						tmp=0;
+						for(j=0;j<answerQ.length;j++){
+							if(answerQ[j]<2) tmp += answerQ[j];
+							if(answerQ[j]>2) tmp -= kfFalse[i];}
+						if(tmp<0) tmp=0;
+						answerTrue += kfQ[i]*tmp/totaltrueQ[i];}
+					else {
+						document.getElementById("torf"+(i+1)).innerHTML='<div class="img_nearly_true"></div>';
+						tmp=0;
+						for(j=0;j<answerQ.length;j++){if(answerQ[j]<2) tmp += answerQ[j];}
+						total += kfQ[i]*tmp/totaltrueQ[i];
+						answerTrue += kfQ[i]*tmp/totaltrueQ[i];}}}}
+		if(document.getElementById("svobod1") != null){
+			for(i=0;i<svob.length;i++){
+				totalS[i]=0;
+				names=document.getElementsByName("S"+(i+1));
+				var names1 = names[0].value;
+				names1 = names1.replace("ё", "е");
+				names1 = names1.replace("Ё", "Е");
+				truerez = code(svob[i]);
+				for(j=0;j<truerez.length;j++){if(names1==truerez[j]){totalS[i]=1;}}
+				totalSAll += kfS[i];
+				if(totalS[i]==1){
+					document.getElementById("svobod"+(i+1)).innerHTML="<div class=imgtrue></div>";
+					total += kfS[i];
+					answerTrue += kfS[i];}
+				else document.getElementById("svobod"+(i+1)).innerHTML="<div class=imgfalse></div>";}}
+		showResult(totalQAll + totalSAll, answerTrue, total);}}
+function showResult(totalQS, answerTrue, total){
+	var i,maxQS=0,vv,ii,jj,ss;
+	for(i=0;i<kfQ.length;i++) maxQS += kfQ[i];
+	for(i=0;i<kfS.length;i++) maxQS += kfS[i];
+	vv = total*100/maxQS;
+	document.getElementById("winotv").innerHTML='<span style="font-size: 22px;">Вы набрали</span><br/><b>'+answerTrue.toFixed(1)+'</b> баллов из <b>'+totalQS.toFixed(1)+'</b> возможных<br>Тест пройден на <b>'+vv.toFixed(0)+'%</b>';
+	document.getElementById("rezbutton").style.display="none"; 
+	document.getElementById("winotv").style.display="block"; 
+	aspan = document.getElementsByName("aspan");
+	for(i=0;i<aspan.length;i++)	{
+		aspan[i].onclick = '';
+		aspan[i].className = '';}
+	if(document.getElementById("svobod1") != null){
+		for(i=0;i<svob.length;i++){
+			names=document.getElementsByName("S"+(i+1));
+			names[0].disabled = true;}}
+	if(document.getElementById("torf1") != null){
+		for (ii=1;ii<=rez.length;ii++){ 
+			ss = document.getElementsByName("Q"+ii.toString());
+			for (jj=0;jj < ss.length;jj++){ss[jj].disabled = "disabled";}}}
+	if(vv==100) document.getElementById("winotv").style.backgroundColor="#E1FFE1";   
+	else { 
+		document.getElementById("winotv").style.color="#FF0000";
+		document.getElementById("winotv").style.boxShadow="0 0 6px #FF0000"; 
+		document.getElementById("winotv").style.backgroundColor="#FFE1E1";}}
+Array.prototype.shuffle = function( deep ){
+  var i = this.length, j, t;
+  while(i){
+   j = Math.floor( (i--) * Math.random() );
+   t = deep && typeof this[i].shuffle!=='undefined' ? this[i].shuffle():this[i];
+   this[i] = this[j];
+   this[j] = t;}
+  return this;};
+
+</script>
+
+</head>
+
+
+
+
+
+<form name="test" method="post">
+
+<div class="onetest" name="onetest"><font size="4" color="000099"><b>
+
+</b></font><br />
+
+</div>
+<div class="onetest" name="onetest"><font size="4" color="000099"><b>
+
+</b></font><br />
+
+</div>
+<div class="onetest" name="onetest"><font size="4" color="000099"><b>
+
+</b></font><br />
+
+</div>
+<div class="onetest" name="onetest"><font size="4" color="000099"><b>
+
+
+
+
+
+</b></font><br />
+
+</div>
+<div class="onetest" name="onetest"><font size="4" color="000099"><b>
+
+</b></font><br />
+
+</div>
+<div class="onetest" name="onetest"><font size="4" color="000099"><b>
+
+</b></font><br />
+
+</div>
+<div id="winotv"></div>
+<div id="rezbutton">
+<input type="button" name="simb" onclick="check_me()" value="Проверить результат">
+</div>
+</form>
+<Script Language="JavaScript">
+var vopr_otv = [
+'<font color="#333333" saze="3"><p>\r\n'+
+'Аутентификация'+
+'</p></font><div class="otv" id="torf1"></div>'+
+'<input type=radio name=Q1><span name="aspan" class="aspan" onclick="getchecked(1,0)"> Копии ваших файлов, которые сохраняются на сервере, жестком диске, компьютере или съемном диске на тот случай, если оригиналы окажутся утеряны.</span><br>'
++'<input type=radio name=Q1><span name="aspan" class="aspan" onclick="getchecked(1,1)"> Процесс установления личности пользователя при попытке получения доступа к компьютеру или к файлам.</span><br>'
++'<input type=radio name=Q1><span name="aspan" class="aspan" onclick="getchecked(1,2)"> Комплексный подход к защите активов компании путем выявления рисков, принятия контрмер и реагирования на угрозы в режиме реального времени.</span><br>'
+,
+'<font color="#333333" saze="3"><p>\r\n'+
+'Безопасность оконечных'+
+'</p></font><div class="otv" id="torf2"></div>'+
+'<input type=radio name=Q2><span name="aspan" class="aspan" onclick="getchecked(2,0)"> Обеспечение безопасности устройств, находящихся в оконечных точках сети; к числу таких устройств относятся используемые сотрудниками мобильные устройства (планшеты, ноутбуки).</span><br>'
++'<input type=radio name=Q2><span name="aspan" class="aspan" onclick="getchecked(2,1)"> Обеспечение безопасности устройств, находящихся в оконечных точках сети; к числу таких устройств относятся используемые сотрудниками мобильные устройства (планшеты, ноутбуки).</span><br>'
++'<input type=radio name=Q2><span name="aspan" class="aspan" onclick="getchecked(2,2)"> Компания, которая предоставляет доступ к интернету.</span><br>'
+,
+'<font color="#333333" saze="3"><p>\r\n'+
+'Червь'+
+'</p></font><div class="otv" id="torf3"></div>'+
+'<input type=radio name=Q3><span name="aspan" class="aspan" onclick="getchecked(3,0)"> Самовоспроизводящаяся вредоносная программа.</span><br>'
++'<input type=radio name=Q3><span name="aspan" class="aspan" onclick="getchecked(3,1)"> Вредоносная программа, которая устанавливает себя при проникновении на компьютер и распространяет собственные копии на другие компьютеры.</span><br>'
++'<input type=radio name=Q3><span name="aspan" class="aspan" onclick="getchecked(3,2)"> Вредоносное ПО, которое без вашего ведома отслеживает действия или информацию на вашем компьютере и пересылает ее другому человеку.</span><br>'
+,
+'<font color="#333333" saze="3"><p>\r\n'+
+'Клавиатурный шпион (кейлоггер)'+
+'</p></font><div class="otv" id="torf4"></div>'+
+'<input type=radio name=Q4><span name="aspan" class="aspan" onclick="getchecked(4,0)"> ПО или аппаратное устройство, регистрирующее нажатия клавиш для перехвата вводимой информации, например паролей.</span><br>'
++'<input type=radio name=Q4><span name="aspan" class="aspan" onclick="getchecked(4,1)"> Самовоспроизводящаяся вредоносная программа.</span><br>'
++'<input type=radio name=Q4><span name="aspan" class="aspan" onclick="getchecked(4,2)"> Вредоносная программа, которая устанавливает себя при проникновении на компьютер и распространяет собственные копии на другие компьютеры.</span><br>'
+,
+'<font color="#333333" saze="3"><p>\r\n'+
+'Шифрование'+
+'</p></font><div class="otv" id="torf5"></div>'+
+'<input type=radio name=Q5><span name="aspan" class="aspan" onclick="getchecked(5,0)"> Трансформация данных с целью их сокрытия.</span><br>'
++'<input type=radio name=Q5><span name="aspan" class="aspan" onclick="getchecked(5,1)"> Несанкционированный доступ к данным.</span><br>'
++'<input type=radio name=Q5><span name="aspan" class="aspan" onclick="getchecked(5,2)"> Обеспечение безопасности устройств, находящихся в оконечных точках сети; к числу таких устройств относятся используемые сотрудниками мобильные устройства (планшеты, ноутбуки).</span><br>'
+,
+'<font color="#333333" saze="3"><p>\r\n'+
+'Утечка данных'+
+'</p></font><div class="otv" id="torf6"></div>'+
+'<input type=radio name=Q6><span name="aspan" class="aspan" onclick="getchecked(6,0)"> Трансформация данных с целью их сокрытия.</span><br>'
++'<input type=radio name=Q6><span name="aspan" class="aspan" onclick="getchecked(6,1)"> Несанкционированный доступ к данным.</span><br>'
++'<input type=radio name=Q6><span name="aspan" class="aspan" onclick="getchecked(6,2)"> Вычислительные сервисы, предоставляемые с удаленных серверов.</span><br>'
+];
+kodvopr = document.getElementsByName("onetest");
+if(mix)vopr_otv.shuffle();
+for (jj=0;jj<kodvopr.length;jj++){kodvopr[jj].innerHTML += vopr_otv[jj];}
+</script>
+
+<a href="https://testedu.ru" style="font-size: 1px;">.</a>
+</body>
+</html>
