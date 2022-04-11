@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <title>Верстка страницы записи в блоге</title>
+   <meta charset="U-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="keywords" content="" />
+   <meta name="description" content="" />
+   <meta name="author" content="HTML5BOOK" />
+   <link rel="shortcut icon" href="/favicon.ico" />
+   <link rel='stylesheet' id='font-awesome-css' href='https://html5book.ru/wp-content/themes/html5book/css/font-awesome.min.css?ver=5.1.1' type='text/css' media='all' />
+   <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,500|Montserrat:400,600,700&amp;subset=cyrillic" rel="stylesheet">
+   <link rel='stylesheet' href="style.css" />
+   <style>
+      .post-image img {
+         width: 100%;
+         margin: 0 0 20px 0;
+      }
+
+      .post h1 {
+         color: #222;
+         font-weight: 600;
+         margin-bottom: 30px;
+      }
+
+      .post-meta {
+         margin-bottom: 30px;
+         display: flex;
+         flex-wrap: wrap;
+      }
+
+      time,
+      .author {
+         padding-right: 26px;
+         position: relative;
+      }
+
+      time:after,
+      .author:after {
+         content: "";
+         width: 6px;
+         height: 6px;
+         border-radius: 50%;
+         background: #666;
+         position: absolute;
+         top: 50%;
+         right: 10px;
+         transform: translateY(-50%);
+      }
+
+      p {
+         line-height: 1.5;
+         margin-bottom: 1em;
+      }
+
+      @media (min-width: 768px) {
+         body {
+            font-size: 16px;
+         }
+
+         .post-image img {
+            float: right;
+            width: 300px;
+            margin: 0 0 20px 20px;
+         }
+
+         .post-header {
+            padding-left: 26px;
+            border-left: 4px solid #D8D8D8;
+            margin-left: -30px;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   
+   <div class="container">
+      <div class="post">
+         <div class="post-image">
+            <img src="https://sun9-84.userapi.com/impf/P0weSSBAcZh-_xDPn1f2ykMH9t_T1xrkDA3oHA/ChjXNlaq0o4.jpg?size=810x1080&quality=95&sign=4af0abd5f3daeeac69f304d83a7b8f18&type=album">
+         </div>
+         <div class="post-content">
+            <div class="post-header">
+               <h1>Автор Усольцев Николай Алексеевич</h1>
+              
+            </div>
+          
+            <p>В современном мире все большую роль играет киберпространство, постепенно проникающее во все сферы человеческой жизни. Образование, межличностное взаимодействие, работа – эти и другие области все активнее переходят в виртуальное измерение, требуя от людей адаптации под новые, постоянно изменяющиеся условия, а также подразумевающие наличие ряда специфических знаний об обеспечении собственной безопасности, так как риски виртуальности многие склонны недооценивать.</p>
+            <p>Особенную группу риска в этой связи представляют школьники разного возраста, которые в силу различных причин относятся к предостережениям достаточно пренебрежительно, а также воспринимают кибер-взаимодействие как нечто естественное и очевидное, так как значительная часть их сознательной жизни с самого начала была связано с кибер-реальностью. По этой причине перед педагогом возникает необходимость не только обучать школьников своему предмету, но и прививать им основы безопасного взаимодействия в виртуальной реальности.</p>
+            <p> Актуальность моей работы заключается в том, что, в связи с вынужденным переходом на дистанционное обучение, очень остро встал вопрос о необходимости защиты интересов детей в онлайн-пространстве, усвоения учениками школы правил кибербезопасности, формированием у них адекватного представления о возможностях и рисках виртуальности, что особенно значимо в период дистанционного обучения.
+            </p>
+         </div>
+      </div>
+   </div>
+
+</body>
+
+</html>
